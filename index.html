@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Call Documentation</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </div>
+    <div class="container">
+        <h1>Support Call Documentation</h1>
+        <div class="form-container">
+            <div class="form-group">
+                <label for="callerType">Caller Type</label>
+                <select id="callerType">
+                    <option value="Account Holder">Account Holder</option>
+                    <option value="Authorized User">Authorized User</option>
+                    <option value="Other User">Other User</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="otherUserFields">
+                <label for="otherUserName">Caller Name</label>
+                <input type="text" id="otherUserName" placeholder="Enter caller's name">
+                <div class="error-message">Please enter the caller's name</div>
+            </div>
+
+            <div class="form-group">
+                <label for="callbackNumber">Best Callback Number</label>
+                <input type="tel" id="callbackNumber" placeholder="e.g., +1 (555) 123-4567">
+                <div class="error-message">Please enter a valid callback number</div>
+            </div>
+
+            <div class="form-group">
+                <label for="callReason">Call Reason</label>
+                <select id="callReason">
+                    <option value="Technical Related">Technical Related</option>
+                    <option value="Billing Related">Billing Related</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="agentNotes">Agent Notes</label>
+                <div class="textarea-container">
+                    <textarea 
+                        id="agentNotes" 
+                        rows="6" 
+                        maxlength="2000" 
+                        placeholder="Enter detailed notes about the call..."
+                        spellcheck="true"
+                        lang="en"
+                        autocorrect="on"
+                        class="custom-scrollbar"
+                    ></textarea>
+                    <div class="autocomplete-container"></div>
+                </div>
+                <div class="character-count">
+                    <span id="currentCount">0</span>/<span id="maxCount">2000</span>
+                </div>
+                <div class="error-message">Please enter agent notes</div>
+            </div>
+
+            <div class="button-group">
+                <button onclick="generateTemplate()" class="primary-btn">
+                    <span>Generate Template</span>
+                </button>
+                <button onclick="copyToClipboard()" class="secondary-btn" id="copyButton" disabled>
+                    <span>Copy to Clipboard</span>
+                </button>
+                <button onclick="showResetConfirmation()" class="reset-btn" id="resetButton">
+                    <span>Reset Form</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="output-container">
+            <h2>Generated Template</h2>
+            <pre id="outputTemplate"></pre>
+        </div>
+    </div>
+
+    <!-- Reset Confirmation Modal -->
+    <div id="resetConfirmationModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Reset</h3>
+            <p>Are you sure you want to reset the form? All entered data will be lost.</p>
+            <div class="modal-buttons">
+                <button onclick="handleResetConfirmation(true)" class="primary-btn">Yes, Reset</button>
+                <button onclick="handleResetConfirmation(false)" class="secondary-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <footer class="footer">
+        <p>Designed & Developed by <a href="https://msmelok.github.io/R4_2.0" target="_blank">Muhammad Meluk</a></p>
+    </footer>
+    
+    <script src="main.js"></script>
+</body>
+</html>
